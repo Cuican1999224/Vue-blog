@@ -49,6 +49,7 @@ export default {
         title:"",
         content:"",
         categories:[],
+        author:""
       },
       authors:["Hemiah",'Henry','Bucky'],
       submmited:false
@@ -56,13 +57,9 @@ export default {
   },
   methods:{
     post:function(){
-      this.$http.post('http://jsonplaceholder.typicode.com/posts',{
-        title:this.blog.title,
-        body:this.blog.content,
-        userId:1
-      })
+      this.$http.post('https://vuedemo-979ea-default-rtdb.firebaseio.com/posts.json',this.blog)
       .then(function(data){
-        console.log(data);
+        // console.log(data);
         this.submmited = true;
       })
     }

@@ -9,14 +9,18 @@ var _ShowBlog = _interopRequireDefault(require("./components/ShowBlog.vue"));
 
 var _AddBlog = _interopRequireDefault(require("./components/AddBlog.vue"));
 
+var _SingleBlog = _interopRequireDefault(require("./components/SingleBlog.vue"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
-// import { component } from 'vue/types/umd'
 var _default = [{
   path: '/',
   component: _ShowBlog["default"]
 }, {
   path: '/add',
   component: _AddBlog["default"]
+}, {
+  path: '/blog/:id',
+  component: _SingleBlog["default"]
 }];
 exports["default"] = _default;
