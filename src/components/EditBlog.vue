@@ -1,6 +1,6 @@
 <template>
   <div id="add-blog">
-   <h2>添加博客</h2>
+   <h2>编辑博客</h2>
    <form v-if="!submmited">
      <label>博客标题</label>
      <input type="text" v-model="blog.title" required />
@@ -18,12 +18,12 @@
      </div>
      <label for="">作者：</label>
      <select v-model="blog.author">
-       <option :key="author" v-for="author in authors">
+       <option :key="author.id" v-for="author in authors">
          {{author}}
        </option>
        
      </select>
-     <button @click.prevent="post">添加博客</button>
+     <button @click.prevent="post">编辑博客</button>
    </form>
    <hr>
    <div id="preview">
@@ -45,24 +45,31 @@ export default {
   name: 'add-blog',
   data () {
     return {
-      blog:{
-        title:"",
-        content:"",
-        categories:[],
-        author:""
-      },
+        id:this.$route.params.id,
+      blog:{ },
       authors:["Hemiah",'Henry','Bucky'],
       submmited:false
     }
   },
   methods:{
+      fetchData(){
+        //   console.log(this.id);
+        this.$http.get('https://vuedemo-979ea-default-rtdb.firebaseio.com/posts/' + this.id + ".json")
+        .then(response =>{
+            // console.log(response.body);
+            this.blog = response.body;
+        })
+      },
     post:function(){
-      this.$http.post('https://b5et4ems.lc-cn-n1-shared.com/posts.json',this.blog)
+      this.$http.put('https://vuedemo-979ea-default-rtdb.firebaseio.com/posts/' + this.id + ".json",this.blog)
       .then(function(data){
         // console.log(data);
         this.submmited = true;
-      })
+      });
     }
+  },
+  created(){
+      this.fetchData();
   }
 }
 </script>

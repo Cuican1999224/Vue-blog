@@ -5,10 +5,12 @@
       <p>作者：{{blog.author}}</p>
       <p>分类：</p>
       <ul>
-          <li :key="category.id" v-for="category in blog.categories">
+          <li :key="category" v-for="category in blog.categories">
               {{category}}
           </li>
       </ul>
+      <button @click="deleteSingleBlog()">删除</button>
+      <router-link :to="/edit/ + id">编辑</router-link>
   </div>
 </template>
 
@@ -31,6 +33,15 @@ export default {
             .then(data=>{
                 this.blog = data;
             })
+    },
+    methods:{
+            deleteSingleBlog(){
+                this.$http.delete("https://vuedemo-979ea-default-rtdb.firebaseio.com/posts/"+ this.id + ".json")
+                .then(Response =>{
+                    this.$router.push({path:'/'})
+                })
+            }
+
     }
 }
 </script>
