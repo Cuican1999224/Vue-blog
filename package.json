@@ -10,6 +10,7 @@
     "build": "node build/build.js"
   },
   "dependencies": {
+    "hydrogen-js-sdk": "^2.2.4",
     "vue": "^2.5.2",
     "vue-resource": "^1.5.1",
     "vue-router": "^3.5.1"

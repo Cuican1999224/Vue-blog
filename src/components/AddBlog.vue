@@ -57,7 +57,7 @@ export default {
   },
   methods:{
     post:function(){
-      this.$http.post('https://b5et4ems.lc-cn-n1-shared.com/posts.json',this.blog)
+      this.$http.post('https://vuedemo-979ea-default-rtdb.firebaseio.com/posts.json',this.blog)
       .then(function(data){
         // console.log(data);
         this.submmited = true;
